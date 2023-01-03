@@ -1,3 +1,4 @@
+//Returns random choice
 function getComputerChoice() {
     //Random number from 0 to 2
     let i = Math.floor(Math.random() * 3);
@@ -10,15 +11,23 @@ function getComputerChoice() {
             return "scissors";
     }
 }
-//Watch it, Im working here!!!
+
+//Html Var instantiation 
 let rockButton = document.querySelector("#rock");
 let paperButton = document.querySelector("#paper");
 let scissorsButton = document.querySelector("#scissors");
-
-rockButton.addEventListener("click", () => console.log(playRound("rock",getComputerChoice())));
-paperButton.addEventListener("click", () => console.log(playRound("paper",getComputerChoice())));
-scissorsButton.addEventListener("click", () => console.log(playRound("scissors",getComputerChoice())));
-
+let resultText = document.querySelector("#results");
+let winLossText = document.querySelector("#winLossText");
+let playerCountText = document.querySelector("#playerCountText");
+let computerCountText = document.querySelector("#computerCountText");
+//Var event listeners that call game()
+rockButton.addEventListener("click", () => game(scissorsButton.innerHTML.toLowerCase()));
+paperButton.addEventListener("click", () => game(scissorsButton.innerHTML.toLowerCase()));
+scissorsButton.addEventListener("click", () => game(scissorsButton.innerHTML.toLowerCase()));
+    //Win Count Vars
+    let playerCount = 0;
+    let computerCount = 0;
+//Game logic returns 
 function playRound(playerSelection, computerSelection) {
     if(playerSelection === "rock" && computerSelection === "rock") {
         playerCount++;
@@ -53,17 +62,26 @@ function playRound(playerSelection, computerSelection) {
      }
 }
 //Old game logic
-/* function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Choose Rock, Paper, Or Scissors:").toLowerCase();
-        const computerSelection = getComputerChoice().toLowerCase();
-        console.log(playRound(playerSelection, computerSelection));
+ function game(userChoice) {
+    //removes win loss text if new game
+    winLossText.innerText = "";
+    //Assign result from gameRound() to resultString and display for user
+    let resultString = playRound(userChoice,getComputerChoice());
+    resultText.innerText = resultString;
+
+    playerCountText.innerText = playerCount;
+    computerCountText.innerText = computerCount;
+
+    if(playerCount === 5) {
+        winLossText.innerText = "Congrats, you won the match!";
+        playerCount = 0;
+        computerCount = 0
+    } else if (computerCount === 5) {
+        winLossText.innerText = "Congrats, you won the match!";
+        playerCount = 0;
+        computerCount = 0;
+
     }
-    if(playerCount > computerCount) {
-        console.log("Congrats, you won the match!");
-    } else {
-        console.log("Sorry, you lose the math");
-    }
-} */
-let playerCount = 0;
-let computerCount = 0;
+
+
+} 
