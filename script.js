@@ -10,6 +10,14 @@ function getComputerChoice() {
             return "scissors";
     }
 }
+//Watch it, Im working here!!!
+let rockButton = document.querySelector("#rock");
+let paperButton = document.querySelector("#paper");
+let scissorsButton = document.querySelector("#scissors");
+
+rockButton.addEventListener("click", () => console.log(playRound("rock",getComputerChoice())));
+paperButton.addEventListener("click", () => console.log(playRound("paper",getComputerChoice())));
+scissorsButton.addEventListener("click", () => console.log(playRound("scissors",getComputerChoice())));
 
 function playRound(playerSelection, computerSelection) {
     if(playerSelection === "rock" && computerSelection === "rock") {
@@ -44,10 +52,10 @@ function playRound(playerSelection, computerSelection) {
         return "You Win! Scissors beat Paper";
      }
 }
-
-function game() {
+//Old game logic
+/* function game() {
     for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Choose Rock, Paper, Or Scissors:");
+        const playerSelection = prompt("Choose Rock, Paper, Or Scissors:").toLowerCase();
         const computerSelection = getComputerChoice().toLowerCase();
         console.log(playRound(playerSelection, computerSelection));
     }
@@ -56,7 +64,6 @@ function game() {
     } else {
         console.log("Sorry, you lose the math");
     }
-}
+} */
 let playerCount = 0;
 let computerCount = 0;
-console.log(game());
