@@ -1,0 +1,21 @@
+
+body {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container {
+    width:150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-container {
+    width: 150px;
+    display: flex;
+    justify-content:space-between;
+}

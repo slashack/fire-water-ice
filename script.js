@@ -4,61 +4,61 @@ function getComputerChoice() {
     let i = Math.floor(Math.random() * 3);
     switch (i){
         case 0:
-            return "rock";
+            return "fire";
         case 1:
-            return "paper";
+            return "water";
         case 2:
-            return "scissors";
+            return "ice";
     }
 }
 
 //Html Var instantiation 
-let rockButton = document.querySelector("#rock");
-let paperButton = document.querySelector("#paper");
-let scissorsButton = document.querySelector("#scissors");
+let rockButton = document.querySelector("#fire");
+let paperButton = document.querySelector("#water");
+let scissorsButton = document.querySelector("#ice");
 let resultText = document.querySelector("#results");
 let winLossText = document.querySelector("#winLossText");
 let playerCountText = document.querySelector("#playerCountText");
 let computerCountText = document.querySelector("#computerCountText");
 //Var event listeners that call game()
-rockButton.addEventListener("click", () => game(scissorsButton.innerHTML.toLowerCase()));
-paperButton.addEventListener("click", () => game(scissorsButton.innerHTML.toLowerCase()));
+rockButton.addEventListener("click", () => game(rockButton.innerHTML.toLowerCase()));
+paperButton.addEventListener("click", () => game(paperButton.innerHTML.toLowerCase()));
 scissorsButton.addEventListener("click", () => game(scissorsButton.innerHTML.toLowerCase()));
     //Win Count Vars
     let playerCount = 0;
     let computerCount = 0;
 //Game logic returns 
 function playRound(playerSelection, computerSelection) {
-    if(playerSelection === "rock" && computerSelection === "rock") {
+    if(playerSelection === "fire" && computerSelection === "fire") {
         playerCount++;
         computerCount++;
-        return "It's a tie!";
-    } else if(playerSelection === "paper" && computerSelection === "paper") {
+        return "It's a draw!";
+    } else if(playerSelection === "water" && computerSelection === "water") {
         playerCount++;
         computerCount++;
-        return "It's a tie!";
-    } else if(playerSelection === "scissors" && computerSelection === "scissors") {
+        return "It's a draw!";
+    } else if(playerSelection === "ice" && computerSelection === "ice") {
         playerCount++;
         computerCount++;
-        return "It's a tie!";
-    } else if(playerSelection === "rock" && computerSelection === "paper") {
-        playerCount++;
-        return "You Win! Rock beats Paper";
-     } else if(playerSelection === "rock" && computerSelection === "scissors") {
-        playerCount++;
-        return "You Win! Rock beats Scissors";
-     } else if(playerSelection === "paper" && computerSelection === "rock") {
-        playerCount++;
-        return "You Win! Paper beats Rock";
-     } else if(playerSelection === "scissors" && computerSelection === "rock") {
+        return "It's a draw!";
+    } else if(playerSelection === "fire" && computerSelection === "water") {
         computerCount++;
-        return "You Lose! Rock beats Scissors";
-     } else if(playerSelection === "paper" && computerSelection === "scissors") {
+        return `You Lose! Their ${computerSelection} extinguished your ${playerSelection}!`;
+     } else if(playerSelection === "fire" && computerSelection === "ice") {
+        playerCount++;
+        return `You Win! Their ${playerSelection} scorched ${computerSelection}!`;
+     } else if(playerSelection === "water" && computerSelection === "fire") {
+        playerCount++;
+        return `You Win! Their ${playerSelection} extinguished ${computerSelection}!`;
+     } else if(playerSelection === "ice" && computerSelection === "fire") {
         computerCount++;
-        return "You Lose! Scissors beat Paper";
-     } else if(playerSelection === "scissors" && computerSelection === "paper") {
+        return `You Lose! Their ${computerSelection} scorched your ${playerSelection}!`;
+     } else if(playerSelection === "water" && computerSelection === "ice") {
         computerCount++;
-        return "You Win! Scissors beat Paper";
+        return `You Lose! Their ${computerSelection} froze your ${playerSelection}!`;
+     } else if(playerSelection === "ice" && computerSelection === "water") {
+        playerCount++;
+        return `You Win! Your ${playerSelection} froze ${computerSelection}!`;
      }
 }
 //Old game logic
@@ -71,13 +71,16 @@ function playRound(playerSelection, computerSelection) {
 
     playerCountText.innerText = playerCount;
     computerCountText.innerText = computerCount;
-
-    if(playerCount === 5) {
+    if (playerCount === 5 && computerCount === 5) {
+        winLossText.innerText = "Its a tie!";
+        playerCount = 0;
+        computerCount = 0;
+    } else if(playerCount === 5) {
         winLossText.innerText = "Congrats, you won the match!";
         playerCount = 0;
-        computerCount = 0
+        computerCount = 0;
     } else if (computerCount === 5) {
-        winLossText.innerText = "Congrats, you won the match!";
+        winLossText.innerText = "Darn, you lost the match!";
         playerCount = 0;
         computerCount = 0;
 
